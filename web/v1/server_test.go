@@ -1,4 +1,4 @@
-package web
+package v1
 
 //func TestServer(t testing.T) {
 //	var h Server
