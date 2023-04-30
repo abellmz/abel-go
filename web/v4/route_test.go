@@ -420,7 +420,7 @@ func Test_router_findRoute(t *testing.T) {
 			path:   "/param/123/detail",
 			found:  true,
 			mi: &matchInfo{
-				n: &node{
+				n: &node{ //最后的路由结点
 					path:    "detail",
 					handler: mockHandler,
 				},
@@ -437,11 +437,11 @@ func Test_router_findRoute(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			mi, found := r.findRoute(tc.method, tc.path)
-			assert.Equal(t, tc.found, found)
+			assert.Equal(t, tc.found, found) //预测能否命中与实际命中情况
 			if !found {
 				return
 			}
-			assert.Equal(t, tc.mi.pathParams, mi.pathParams)
+			assert.Equal(t, tc.mi.pathParams, mi.pathParams) // 预测参数路由和命中参数路由 的蚕食结点是否相同
 			n := mi.n
 			wantVal := reflect.ValueOf(tc.mi.n.handler)
 			nVal := reflect.ValueOf(n.handler)

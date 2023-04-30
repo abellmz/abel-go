@@ -91,9 +91,11 @@ func (r *router) findRoute(method string, path string) (*node, bool) {
 }
 
 func (n *node) childOf(path string) (*node, bool) {
+	// 结点的children==nil ,返回通配符结点
 	if n.children == nil {
 		return n.starChild, n.starChild != nil
 	}
+	// children中无该path，返回通配符结点
 	res, ok := n.children[path]
 	if !ok {
 		return n.starChild, n.starChild != nil
