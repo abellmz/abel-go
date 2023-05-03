@@ -5,8 +5,6 @@ import (
 	"testing"
 )
 
-// 这里放着端到端测试的代码
-
 func TestServer(t *testing.T) {
 	s := NewHTTPServer()
 	s.Get("/", func(ctx *Context) {
